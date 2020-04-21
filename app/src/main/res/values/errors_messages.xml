@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sing_in_error">usuario o contraseña equivocada. Por favor intente de nuevo</string>
+    <string name="user_void">El campo de usuario no puede estar vacio</string>
+    <string name="sing_up_error">Ese usuario ya existe o en este momento no es posible crear su cuenta</string>
+
+</resources>

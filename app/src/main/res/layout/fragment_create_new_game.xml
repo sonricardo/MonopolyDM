@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.CreateNewGameFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="30dp"
+        >
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="nombre del juego: "
+            android:layout_marginTop="100dp"
+            android:textColor="@color/colorBack"
+            android:layout_marginBottom="15dp"
+            android:textSize="@dimen/text_size_normal" />
+
+        <EditText
+            android:id="@+id/edit_text_new_game"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="nombre_del_juego"
+            android:textSize="@dimen/edt_text_normal" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Dinero inicial:"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorBack"
+            android:layout_marginBottom="15dp"
+            android:textSize="@dimen/text_size_normal" />
+
+        <EditText
+            android:id="@+id/edit_text_init_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+           android:text="1500"
+            android:inputType="number"
+            android:textSize="@dimen/edt_text_normal" />
+
+        <Button
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="CREAR"
+            android:layout_gravity="center"
+            android:id="@+id/button_create_game"
+            android:background="@color/colorPrimaryDark"
+
+            />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -9,10 +9,18 @@
         android:roundIcon="@mipmap/ic_monopoly_card"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.LoginActivity"></activity>
-        <activity android:name=".SplashScreen"
-            android:theme="@style/SplashTheme"
-            android:noHistory="true">
+        <activity android:name=".activities.GameActivity"
+            android:noHistory="true"
+            android:theme="@style/SplashTheme"></activity>
+        <activity
+            android:name=".activities.MenuActivity"
+            android:noHistory="true"
+            android:theme="@style/SplashTheme"></activity>
+        <activity android:name=".activities.LoginActivity" />
+        <activity
+            android:name=".SplashScreen"
+            android:noHistory="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
