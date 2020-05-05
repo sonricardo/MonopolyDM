@@ -2,6 +2,7 @@ package com.example.monopolydm.model
 
 import java.util.concurrent.atomic.AtomicInteger
 
-data class Game(var isEneable:Boolean = true, var IdsPlayers:List<Int>?, val idGame:AtomicInteger,
-                val hosterPlayer:Player, val initMoney:Int, var idsTransactions: List<Int>?)
+data class Game(var isEneable:Boolean = true, var IdsPlayers:MutableList<String>? = null, val nameGame:String? = null,
+                val hosterName:String? = null, val initMoney:Int = 1500, var idsTransactions: MutableList<Int>? = null
+                , var id:String? = null)
 

@@ -12,6 +12,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/recycler_player_transactions"
             android:paddingTop="30dp">
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -19,6 +20,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="invisible"
 
             >
             <View
@@ -36,13 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <Button
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/tache_16"
-                android:layout_gravity="end"
-                android:id="@+id/button_cancel"
-                />
+
 
         </LinearLayout>
 

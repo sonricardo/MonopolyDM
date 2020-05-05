@@ -3,5 +3,11 @@
     <string name="sing_in_error">usuario o contraseña equivocada. Por favor intente de nuevo</string>
     <string name="user_void">El campo de usuario no puede estar vacio</string>
     <string name="sing_up_error">Ese usuario ya existe o en este momento no es posible crear su cuenta</string>
+    <string name="game_name_error">Ese juego ya existe, intente con otro nombre</string>
+    <string name="last_error">Usted no tiene juegos registrados o el juego ya no existe</string>
+    <string name="join_error">El juego que busca no existe, o ya se a terminado. Intente con otro</string>
+    <string name="join_error_exist">Usted ya esta registrado en ese juego</string>
+    <string name="transfer_succes">Transferencia hecha</string>
+    <string name="tranfer_error">error en transferencia</string>
 
 </resources>

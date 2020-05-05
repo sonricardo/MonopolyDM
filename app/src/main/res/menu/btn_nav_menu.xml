@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_all_transactions"
+        android:title="historial"
+        android:icon="@drawable/ic_transactions_list"
+
+    />
+    <item
+        android:id="@+id/nav_my_transactions"
+        android:title="mi historial"
+        android:icon="@drawable/ic_transactions_list"
+
+        />
+    <item
+        android:id="@+id/nav_game_main"
+        android:title="mi cuenta"
+        android:icon="@drawable/ic_money"
+
+        />
+
+    <item
+        android:id="@+id/nav_action_transfer"
+        android:title="transferir"
+        android:icon="@drawable/ic_action_transaction"
+
+        />
+
+
+
+</menu>

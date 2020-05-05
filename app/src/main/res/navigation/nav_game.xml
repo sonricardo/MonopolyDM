@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_game"
+
+    app:startDestination="@id/nav_game_main">
+
+    <fragment
+        android:id="@+id/nav_game_main"
+        android:name="com.example.monopolydm.fragments.MainGameFragment"
+        android:label="fragment_main_game"
+        tools:layout="@layout/fragment_main_game" >
+        <action
+            android:id="@+id/nav_game_main_to_nav_action_transfer"
+            app:destination="@id/nav_action_transfer" />
+        <action
+            android:id="@+id/nav_game_main_to_nav_my_transactions"
+            app:destination="@id/nav_my_transactions" />
+        <action
+            android:id="@+id/nav_game_main_to_nav_all_transactions"
+            app:destination="@id/nav_all_transactions" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_action_transfer"
+        android:name="com.example.monopolydm.fragments.ActionTransferFragment"
+        android:label="fragment_action_transfer"
+        tools:layout="@layout/fragment_action_transfer" >
+        <action
+            android:id="@+id/nav_action_transfer_to_nav_my_transactions"
+            app:destination="@id/nav_my_transactions" />
+        <action
+            android:id="@+id/nav_action_transfer_to_nav_all_transactions"
+            app:destination="@id/nav_all_transactions" />
+        <action
+            android:id="@+id/nav_action_transfer_to_nav_game_main"
+            app:destination="@id/nav_game_main" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_my_transactions"
+        android:name="com.example.monopolydm.fragments.TransactionsFragment"
+        android:label="fragment_transactions"
+        tools:layout="@layout/fragment_transactions" >
+        <action
+            android:id="@+id/nav_my_transactions_to_nav_all_transactions"
+            app:destination="@id/nav_all_transactions" />
+        <action
+            android:id="@+id/nav_my_transactions_to_nav_action_transfer"
+            app:destination="@id/nav_action_transfer" />
+        <action
+            android:id="@+id/nav_my_transactions_to_nav_game_main"
+            app:destination="@id/nav_game_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_all_transactions"
+        android:name="com.example.monopolydm.fragments.AllTransactionFragment"
+        android:label="fragment_all_transaction"
+        tools:layout="@layout/fragment_all_transaction" >
+        <action
+            android:id="@+id/nav_all_transactions_to_nav_my_transactions"
+            app:destination="@id/nav_my_transactions" />
+        <action
+            android:id="@+id/nav_all_transactions_to_nav_game_main"
+            app:destination="@id/nav_game_main" />
+        <action
+            android:id="@+id/nav_all_transactions_to_nav_action_transfer"
+            app:destination="@id/nav_action_transfer" />
+    </fragment>
+</navigation>

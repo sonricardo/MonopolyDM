@@ -30,7 +30,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:name = "com.example.monopoly.fragments.CreateNewGameFragment"
         android:id="@+id/frame_content_fragment"/>
 
 

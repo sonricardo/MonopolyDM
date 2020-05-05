@@ -16,15 +16,16 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.monopolydm.R
+import com.example.monopolydm.activities.functions.LoginViewModel
 import com.example.monopolydm.activities.functions.createPlayer
 import com.example.monopolydm.activities.functions.signUpPlayer
 import com.example.monopolydm.activities.functions.singInPlayer
 import com.example.monopolydm.activities.interfaces.ISingIn
 import com.example.monopolydm.activities.interfaces.ISingUp
 import com.example.monopolydm.model.Player
-import com.example.monopolydm.model.TAG_PLAYER_NAME
-import com.example.monopolydm.model.TAG_PLAYER_PASSWORD
 import com.example.monopolydm.network.Callback
 import com.example.monopolydm.network.FireStoreService
 import com.example.monopolydm.network.PLAYERS_COLLECTION_NAME
@@ -45,6 +46,7 @@ class LoginActivity : AppCompatActivity(),OnClickListener {
     lateinit var prg_bar:ProgressBar
     lateinit var db:FirebaseFirestore
     lateinit var context:Context
+    lateinit var model:LoginViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,87 +65,104 @@ class LoginActivity : AppCompatActivity(),OnClickListener {
         btn_sin.setOnClickListener(this)
         btn_sup.setOnClickListener(this)
 
-    }
+        model = ViewModelProviders.of(this)[LoginViewModel::class.java]
+        /*
+        model.getPlayersAndObserve().observe(this, Observer<List<Player>>{ players ->
+
+            var string = ""
+
+            for(player in players){
+
+                string += player.name
+            }
+            text_test.text = string
+        })  */
+
+}
 
 
-    override fun onClick(v: View?) {
-       if(v != null){
 
-           when(v.id){
-               btn_sin.id -> {
+override fun onClick(v: View?) {
+if(v != null){
 
-                   if(edt_user.text.toString() == "" ){
-                       Toast.makeText(context,R.string.user_void,Toast.LENGTH_LONG).show()
+   when(v.id){
+       btn_sin.id -> {
+
+           if(edt_user.text.toString() == "" ){
+               Toast.makeText(context,R.string.user_void,Toast.LENGTH_LONG).show()
+           }
+           else{
+
+               desactivateView()
+               singInPlayer(createPlayer(edt_user.text.toString(),edt_pass.text.toString()),db, object : ISingIn{
+                   override fun onSingInSucces() {
+                       activateView()
+                       startMenuActivity()
+
+
+
                    }
-                   else{
-                       desactivateView()
-                       singInPlayer(createPlayer(edt_user.text.toString(),edt_pass.text.toString()),db, object : ISingIn{
-                           override fun onSingInSucces() {
-                               activateView()
-                               startMenuActivity()
-
-                           }
 
 
-                           override fun onSingInFailed() {
-                               activateView()
-                               Toast.makeText(context,R.string.sing_in_error,Toast.LENGTH_LONG).show()
-                           }
-                       })
+                   override fun onSingInFailed() {
+                       activateView()
+                       Toast.makeText(context,R.string.sing_in_error,Toast.LENGTH_LONG).show()
                    }
-
-
-               }
-
-               btn_sup.id -> {
-                   if(edt_user.text.toString() == "" ){
-                       Toast.makeText(context,R.string.user_void,Toast.LENGTH_LONG).show()
-                   }
-                   else{
-                       desactivateView()
-                       signUpPlayer(createPlayer(edt_user.text.toString(),edt_pass.text.toString()),db, object : ISingUp{
-                           override fun onSingUpSucces() {
-                               activateView()
-                               startMenuActivity()
-                               Toast.makeText(context,"ya me voy para wasabe",Toast.LENGTH_LONG).show()
-                           }
-
-                           override fun onSingUpFailed() {
-                               activateView()
-                               Toast.makeText(context,R.string.sing_up_error,Toast.LENGTH_LONG).show()
-                           }
-
-                       })
-                   }
-               }
-
+               })
            }
 
+
        }
-    }
 
-     fun startMenuActivity() {
-         val intent = Intent(this@LoginActivity, MenuActivity::class.java)
-         intent.putExtra("lo" ,edt_user.text.toString())
-         startActivity(intent)
-         finish()
-    }
+       btn_sup.id -> {
+           if(edt_user.text.toString() == "" ){
+               Toast.makeText(context,R.string.user_void,Toast.LENGTH_LONG).show()
+           }
+           else{
+               desactivateView()
+               signUpPlayer(createPlayer(edt_user.text.toString(),edt_pass.text.toString()),db, object : ISingUp{
+                   override fun onSingUpSucces() {
+                       activateView()
+                       startMenuActivity()
 
-    fun activateView(){
-        prg_bar.visibility = View.INVISIBLE
-        btn_sin.isEnabled = true
-        btn_sup.isEnabled = true
-        edt_user.isEnabled = true
-        edt_pass.isEnabled = true
-    }
+                   }
 
-    fun desactivateView(){
-        prg_bar.visibility = View.VISIBLE
-        btn_sin.isEnabled = false
-        btn_sup.isEnabled = false
-        edt_user.isEnabled = false
-        edt_pass.isEnabled = false
-    }
+                   override fun onSingUpFailed() {
+                       activateView()
+                       Toast.makeText(context,R.string.sing_up_error,Toast.LENGTH_LONG).show()
+                   }
+
+               })
+           }
+       }
+
+   }
+
+}
+}
+
+fun startMenuActivity() {
+ val intent = Intent(this@LoginActivity, MenuActivity::class.java)
+ intent.putExtra("lo" ,edt_user.text.toString())
+ startActivity(intent)
+
+}
+
+fun activateView(){
+prg_bar.visibility = View.INVISIBLE
+btn_sin.isEnabled = true
+btn_sup.isEnabled = true
+edt_user.isEnabled = true
+edt_pass.isEnabled = true
+}
+
+fun desactivateView(){
+prg_bar.visibility = View.VISIBLE
+btn_sin.isEnabled = false
+btn_sup.isEnabled = false
+edt_user.isEnabled = false
+edt_pass.isEnabled = false
+}
 
 }
 

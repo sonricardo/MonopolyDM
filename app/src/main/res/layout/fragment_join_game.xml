@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.CreateNewGameFragment">
+    tools:context=".fragments.JoinGameFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:textSize="@dimen/text_size_normal" />
 
         <EditText
-            android:id="@+id/edit_text_new_game"
+            android:id="@+id/edit_text_join_game"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -37,36 +37,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="100dp"
             android:layout_marginBottom="15dp"
-            android:text="Dinero inicial:"
+            android:text="nombre del hoster: "
             android:textColor="@color/colorBack"
             android:textSize="@dimen/text_size_normal" />
 
         <EditText
-            android:id="@+id/edit_text_init_money"
+            android:id="@+id/edit_text_hoster_game"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:inputType="number"
-            android:text="1500"
-
+            android:hint="nombre_del_hoster"
+            android:inputType="text"
 
             android:textSize="@dimen/edt_text_normal" />
 
+
+
         <Button
-            android:id="@+id/button_create_game"
+            android:id="@+id/button_join_game_frag"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             android:background="@color/colorPrimaryDark"
-            android:text="CREAR"
+            android:text="ENTRAR"
 
             />
 
         <ProgressBar
-            android:id="@+id/progress_create_game"
+            android:id="@+id/progress_join_game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -74,5 +75,6 @@
             android:visibility="invisible"/>
 
     </LinearLayout>
+
 
 </FrameLayout>

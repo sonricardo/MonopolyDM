@@ -1,20 +1,62 @@
 package com.example.monopolydm.activities.functions
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.util.Log
-import android.widget.Toast
-import com.example.monopolydm.activities.LoginActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.monopolydm.activities.interfaces.IQueryPlayer
 import com.example.monopolydm.activities.interfaces.ISingIn
 import com.example.monopolydm.activities.interfaces.ISingUp
 import com.example.monopolydm.model.Player
-import com.example.monopolydm.model.TAG_PLAYER_PASSWORD
+
 import com.example.monopolydm.network.Callback
 import com.example.monopolydm.network.FireStoreService
 import com.example.monopolydm.network.PLAYERS_COLLECTION_NAME
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_login.*
+
+
+class LoginViewModel: ViewModel() {
+
+    val fireStoreService:FireStoreService = FireStoreService(FirebaseFirestore.getInstance())
+
+
+    private val players: MutableLiveData<List<Player>> by lazy {
+        MutableLiveData<List<Player>>().also {
+            loadUsers()
+        }
+    }
+
+    var playerList = mutableListOf<Player>()
+
+    fun getPlayers(): LiveData<List<Player>> {
+        return players
+    }
+
+    private fun loadUsers() {
+        fireStoreService.getAllPlayersAndObserve(object : Callback<MutableList<Player>> {
+            override fun onSuccess(result: MutableList<Player>?) {
+                playerList = result!!
+                players.postValue(result!!)
+
+            }
+
+            override fun onFailed(exception: Exception) {
+
+            }
+
+        })
+
+    }
+
+    fun addPlayer(){
+        playerList.add(createPlayer("pancho","pantera"))
+        players.postValue(playerList)
+
+    }
+}
+
+
 
 
 fun createPlayer(name:String,password:String): Player {
@@ -23,7 +65,7 @@ fun createPlayer(name:String,password:String): Player {
 
 fun signUpPlayer(player: Player, db:FirebaseFirestore, callback: ISingUp) {
 
-    findPlayerName(player.name,db, object :IQueryPlayer {
+    findPlayerName(player.name!!,db, object :IQueryPlayer {
         override fun onQueryFailed() {
 
             val fireStoreServices = FireStoreService(db)
@@ -73,7 +115,7 @@ fun findPlayerName(name:String,   db:FirebaseFirestore, callback: IQueryPlayer){
 
 fun findPlayer(name:String, password: String,  db:FirebaseFirestore, callback: IQueryPlayer){
     val fireStoreServices = FireStoreService(db)
-    fireStoreServices.queryField(PLAYERS_COLLECTION_NAME,name, TAG_PLAYER_PASSWORD, password,object : Callback<Boolean> {
+    fireStoreServices.queryField(PLAYERS_COLLECTION_NAME,name, "password", password,object : Callback<Boolean> {
         override fun onSuccess(result: Boolean?) {
             try {
                 if(result!!){
@@ -97,7 +139,7 @@ fun findPlayer(name:String, password: String,  db:FirebaseFirestore, callback: I
 
 fun singInPlayer(player: Player, db:FirebaseFirestore, callback: ISingIn) {
 
-    findPlayer(player.name,player.password,db, object :IQueryPlayer {
+    findPlayer(player.name!!,player.password!!,db, object :IQueryPlayer {
         override fun onQuerySucces() {
 
             callback.onSingInSucces()
